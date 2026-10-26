@@ -1,0 +1,104 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Montserrat", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+}
+
+/* TechTrac brand: deep navy, electric cyan */
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.13 0.025 260);
+  --foreground: oklch(0.93 0.012 250);
+  --surface: oklch(0.17 0.03 258);
+  --card: oklch(0.18 0.03 258);
+  --card-foreground: oklch(0.93 0.012 250);
+  --popover: oklch(0.18 0.03 258);
+  --popover-foreground: oklch(0.93 0.012 250);
+  --primary: oklch(0.74 0.15 230);
+  --primary-foreground: oklch(0.13 0.025 260);
+  --primary-glow: oklch(0.85 0.11 205);
+  --secondary: oklch(0.24 0.03 255);
+  --secondary-foreground: oklch(0.93 0.012 250);
+  --muted: oklch(0.22 0.03 256);
+  --muted-foreground: oklch(0.76 0.03 245);
+  --accent: oklch(0.85 0.11 205);
+  --accent-foreground: oklch(0.13 0.025 260);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.28 0.03 255);
+  --input: oklch(0.28 0.03 255);
+  --ring: oklch(0.74 0.15 230);
+  --gradient-brand: linear-gradient(120deg, var(--primary), var(--primary-glow));
+  --gradient-hero: radial-gradient(60% 60% at 70% 0%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 70%),
+    radial-gradient(40% 50% at 0% 100%, color-mix(in oklab, var(--primary-glow) 14%, transparent), transparent 70%);
+  --shadow-glow: 0 20px 60px -20px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@utility bg-hero { background-image: var(--gradient-hero); }
+@utility text-brand {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility bg-brand { background-image: var(--gradient-brand); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility grid-lines {
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+@utility animate-marquee { animation: marquee 40s linear infinite; }
+
+.workflow-answer h1, .workflow-answer h2, .workflow-answer h3 { font-weight: 700; margin: 1.25rem 0 .5rem; }
+.workflow-answer h1 { font-size: 1.25rem; }
+.workflow-answer p { margin: .65rem 0; }
+.workflow-answer ol, .workflow-answer ul { padding-left: 1.4rem; margin: .75rem 0; }
+.workflow-answer ol { list-style: decimal; }
+.workflow-answer ul { list-style: disc; }
+.workflow-answer li { margin: .5rem 0; }
+.workflow-answer a { color: var(--primary); text-decoration: underline; }
+.workflow-answer pre { overflow-x: auto; }
